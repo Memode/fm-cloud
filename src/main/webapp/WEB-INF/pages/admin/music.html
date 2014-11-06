@@ -1,0 +1,42 @@
+<% include("/common/admin_header.html", {active : 'music'}){} %>
+<div>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>曲目名称</th>
+				<th>歌手</th>
+				<th>所属分类</th>
+				<th>喜欢次数</th>
+				<th>下载次数</th>
+				<th>上传时间</th>
+				<th>上传人</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(music in pageMap.results!){%>
+			<tr>
+				<td>${musicLP.index}</td>
+				<td><a href="${base}/admin/music/${music.id!}" title="编辑">${music.song!}</a></td>
+				<td>${music.singer!}</td>
+				<td>${music.mcat!}</td>
+				<td>${music.like_count!}</td>
+				<td>${music.download_count!}</td>
+				<td>${music.time_zh!}</td>
+				<td>${music.nickname!}</td>
+				<td>
+					<a href="${base}/admin/music/${music.id!}" title="编辑">
+						<i class="icon-edit"></i>
+					</a>&nbsp;&nbsp;
+					<a href="javascript:void(0);" title="删除" onclick="$unique.admin.music.del(${music.id!})">
+						<i class="icon-trash"></i>
+					</a>
+				</td>
+			</tr>
+			<% }%>
+		</tbody>
+	</table>
+	<% page(pageMap, './music'); %>
+</div>
+<% include("/common/admin_footer.html",{jsList:['admin/music.js']}){} %>

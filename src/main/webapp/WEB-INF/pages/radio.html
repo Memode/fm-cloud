@@ -1,0 +1,43 @@
+<% include("/common/header.html", {active:'special',title:'百味电台-${specialMap.title!}'}){} %>
+<div>
+	<article>
+		<blockquote>
+			<div class="pull-left">
+				<div class="pull-left">
+					<img alt="" src="${specialMap.cover_url!}" width="260" height="260">
+				</div>
+				<div class="pull-left" style="padding: 20px;">
+					<h2>播放区域</h2>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div>
+				<p class="text-muted">${specialMap.title!}</p>
+				<p class="text-muted">简介：${specialMap.introduce!}</p>
+			</div>
+		</blockquote>
+		<div class="list-group">
+			<%
+			for(radio in radioList!){%>
+				<a href="javascript:void(0);" onclick="$unique.radio.play(this, ${radio.id!});" class="list-group-item">${radio.title!}<i class="icon-play pull-right"></i></a>
+			<%}
+			%>
+        </div>
+		<!-- 
+		<div>
+			<p class="pull-right text-muted">发布时间：2013年11月7日 16:44:21
+				&nbsp;点击数：234</p>
+			<p class="text-important">
+				本文版权所有归<a href="###">@catouse</a>
+			</p>
+			<ul class="pager pager-justify">
+				<li class="previous"><a href="${base}/special"><i class="icon-arrow-left"></i>
+						回到专辑列表</a></li>
+				<li><a href="#"><i class="icon-list-ul"></i> 目录</a></li>
+				<li class="next disabled"><a href="#">没有下一篇 <i class="icon-arrow-right"></i></a></li>
+			</ul>
+		</div>
+		 -->
+	</article>
+</div>
+<% include("/common/footer.html", {jsList:['front/radio.js']}){} %>

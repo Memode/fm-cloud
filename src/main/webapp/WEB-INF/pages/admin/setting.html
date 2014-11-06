@@ -1,0 +1,71 @@
+<% include("/common/admin_header.html", {active : 'setting'}){} %>
+<form id="setting_form" action="##" class="form-horizontal" role="form"
+	method="post" autocomplete="off">
+	<legend>系统设置</legend>
+	<div class="form-group">
+		<label class="col-md-2 control-label">网站标题：</label>
+		<div class="col-md-4">
+			<input type="text" name="site_title" id="site_title" value="${setting.site_title!}"
+				class="form-control" placeholder="请输入网站标题">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">网站关键字：</label>
+		<div class="col-md-4">
+			<input type="text" name="site_keywords" id="site_keywords" value="${setting.site_keywords!}"
+				class="form-control" placeholder="请输入关键字，多个用|隔开">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">网站描述：</label>
+		<div class="col-md-4">
+			<input type="text" name="site_description" id="site_description" value="${setting.site_description!}"
+				class="form-control" placeholder="请输入网站描述">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">新浪微博：</label>
+		<div class="col-md-4">
+			<input type="text" name="sina_weibo" id="sina_weibo" value="${setting.sina_weibo!}"
+				class="form-control" placeholder="请输入微博地址">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">腾讯微博：</label>
+		<div class="col-md-4">
+			<input type="text" name="tencent_weibo" id="tencent_weibo" value="${setting.tencent_weibo!}"
+				class="form-control" placeholder="请输入微博地址">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="button" class="btn" value="清空缓存" onclick="$unique.admin.setting.clean()">
+			<input type="submit" id="submit" class="btn btn-primary" value="保存设置" data-loading="请稍候...">
+		</div>
+	</div>
+</form>
+
+<form id="qiniu_setting_form" action="##" class="form-horizontal" role="form" method="post" autocomplete="off">
+	<legend>七牛云存储</legend>
+	<div class="form-group">
+		<label class="col-md-2 control-label">清空无用资源：</label>
+		<div class="col-md-4">
+			<label class="radio-inline"> <input checked="checked" type="radio" name="type" value="1"> 完全匹配 </label>
+			<label class="radio-inline"> <input type="radio" name="type" value="2"> 前缀匹配 </label>
+			<label class="radio-inline"> <input type="radio" name="type" value="3"> 自动同步 </label>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">清空无用资源：</label>
+		<div class="col-md-4">
+			<input type="text" name="key" id="key" value="" class="form-control" placeholder="请输入七牛key">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" class="btn btn-primary" value="确认执行" data-loading="请稍候...">
+		</div>
+	</div>
+</form>
+
+<% include("/common/admin_footer.html",{jsList:['admin/setting.js']}){} %>

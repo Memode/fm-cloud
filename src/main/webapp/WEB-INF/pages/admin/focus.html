@@ -1,0 +1,47 @@
+<% include("/common/admin_header.html", {active : 'pic', title : '焦点图管理'}){} %>
+<div>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>标题</th>
+				<th width="300">描述</th>
+				<th>封面</th>
+				<th>创建时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(focus in focusPage.results!){%>
+			<tr>
+				<td>${focus.id!}</td>
+				<td><a href="${base}/admin/focus/${focus.id!}">${focus.title!}</a></td>
+				<td>${focus.introduce!}</td>
+				<td>
+					<a href="${focus.pic_url!}" target="_blank"><img src="${focus.pic_url!}" width="80" height="80" /></a>
+				</td>
+				<td>${focus.date_zh!}</td>
+				<td><%
+						if(1==focus.status!){%>
+							正常
+						<%} else{%>
+							禁用
+					<%} %>
+				</td>
+				<td>
+					<a href="${base}/admin/focus/${focus.id!}" title="编辑">
+						<i class="icon-edit"></i>
+					</a>&nbsp;&nbsp;
+					<a href="javascript:void(0);" title="删除" onclick="$unique.admin.focus.enable(${focus.id!}, 0)">
+						<i class="icon-ban-circle"></i>
+					</a>
+				</td>
+			</tr>
+			<% }%>
+		</tbody>
+	</table>
+	<% page(focusPage, './focus'); %>
+</div>
+<script type="text/javascript" src="${cdn}/assets/uploadify/jquery.uploadify.min.js"></script>
+<% include("/common/admin_footer.html", {jsList : ['admin/focus.js']}){} %>

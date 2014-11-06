@@ -1,0 +1,41 @@
+<% include("/common/header.html", {active:'pic', title:'七牛云音乐电台!'}){} %>
+<article class="article">
+	<header>
+		<h1 class="text-center">${pictrue.title!}</h1>
+		<dl class="dl-inline">
+			<dt>发布时间：</dt>
+			<dd>${pictrue.time_zh!}</dd>
+			<dt>作者：</dt>
+			<dd>rex</dd>
+			<dt></dt>
+			<dd class="pull-right">
+				<span class="label label-success">NEW</span> <span
+					class="label label-warning">火爆</span> <span
+					class="label label-info">原创</span> <span class="label label-danger"><i
+					class="icon-eye-open"></i> 235</span>
+			</dd>
+		</dl>
+	</header>
+	<section class="article-content">
+		<%
+			for(pic in pictrue.pics!){%>
+				<img src="${pic.url!}" title="${pic.desc!}"/>
+				<p>${pic.desc!}</p>
+			<%}
+		%>
+	</section>
+	<div>
+		<ul class="pager pager-justify">
+			<li class="previous">
+				<a href="${base}/pictures"><i class="icon-arrow-left"></i>上一个图册</a>
+			</li>
+			<li>
+				<a href="${base}/pictures"><i class="icon-list-ul"></i> 返回图册</a>
+			</li>
+			<li class="next disabled">
+				<a href="#">没有下一篇 <i class="icon-arrow-right"></i></a>
+			</li>
+		</ul>
+	</div>
+</article>
+<% include("/common/footer.html"){} %>

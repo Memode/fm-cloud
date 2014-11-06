@@ -1,0 +1,53 @@
+<% include("/common/admin_header.html", {active : 'radio'}){} %>
+<!--装载文件-->
+<link rel="stylesheet" type="text/css" href="${cdn}/assets/js/validator-0.7.3/jquery.validator.css">
+
+<form id="upload_radio_form" action="##" class="form-horizontal" role="form"
+	method="post" autocomplete="off">
+	<legend>编辑电台</legend>
+	<div class="form-group">
+		<label class="col-md-2 control-label required">电台标题：</label>
+		<div class="col-md-4">
+			<input type="text" name="title" id="title" value="${radio.title!}"
+				class="form-control" placeholder="请输入电台标题">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">所属专辑：</label>
+		<div class="col-md-4">
+			<%for(special in specialList!){
+				if(special.id == radio.sid!){%>
+					<label class="radio-inline"> <input type="radio" checked="checked" name="sid" value="${special.id}"> ${special.title!} </label> &nbsp;&nbsp;
+				<%} else{%>
+					<label class="radio-inline"> <input type="radio" name="sid" value="${special.id}"> ${special.title!} </label> &nbsp;&nbsp;
+				<%}
+			} %>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label required">插入电台：</label>
+		<div class="col-md-4">
+			<input type="text" name="url" id="url" value="${radio.url!}"
+				class="form-control" placeholder="请输入电台地址">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-md-2 control-label">上传音乐文件：</label>
+		<div class="col-md-4">
+			<div id="fileQueue"></div>
+			<button type="button" id="uploader" class="btn btn-primary">选择电台文件</button>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="button" class="btn" value="返回上级" onclick="window.location.href='${base}/admin/radio'">
+			<input type="submit" id="submit" class="btn btn-primary" value="保存音乐" data-loading="请稍候...">
+			<input type="hidden" name="step" value="submit">
+			<input type="hidden" name="id" value="${radio.id!}">
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript" src="${cdn}/assets/plugins/plupload/js/plupload.full.min.js"></script>
+<% include("/common/admin_footer.html",{jsList:['admin/radio.js']}){} %>

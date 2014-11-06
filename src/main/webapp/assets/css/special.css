@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* 公用代码可以和自己原来公用css合并 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form,
+	fieldset, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: #eee url("../../images/bg/bg_02.jpg") no-repeat center;
+  	opacity:0.8;
+  	filter:alpha(opacity=80);
+  	-moz-opacity:0.8;opacity:0.8;
+  	-khtml-opacity: 0.8;
+  	overflow-x: hidden;
+}
+
+.sec{
+	margin: 0 auto;
+}
+
+#radio-main{
+	clear: both;
+	padding-top: 20px;
+}
+#radio-main img{
+	cursor: pointer;
+}

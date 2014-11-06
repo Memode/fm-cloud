@@ -1,0 +1,26 @@
+
+<% include("/common/header.html", {active:'pic', title:'精选图册', cssList : ['/picture.css']}){} %>
+<div class="container col-md-12">
+	<div id="wrapper">
+		<div id="container">
+			<%
+			for(pic in picPage.results!){%>
+				<div class="grid">
+					<div class="imgholder">
+						<a href="${base}/pictures/${pic.id!}"><img class="lazy" src="${cdn}/assets/images/pixel.gif" data-original="${pic.cover_url!}" width="175" /></a>
+					</div>
+					<strong>${pic.title!}</strong>
+					<p>${pic.introduce!}</p>
+					<div class="meta">
+						<a href="${base}/pictures/${pic.id!}">点击查看>>></a>
+					</div>
+				</div>
+			<%}
+			%>
+		</div>
+		<span id="btnok" style="display: block; width: 100px; height: 30px; line-height: 30px; text-align: center; margin: 0 auto;"></span>
+	</div>
+</div>
+<script type="text/javascript" src="${cdn}/assets/js/jq/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="${cdn}/assets/js/blocksit.min.js"></script>
+<% include("/common/footer.html", {jsList:['front/picture.js']}){} %>

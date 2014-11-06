@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>${setting.site_title!} | ${title!'七牛云fm'}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="${setting.site_description!}" />
+<meta name="keywords" content="${setting.site_keywords!}">
+<link rel="shortcut icon" href="${cdn}/assets/images/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="stylesheet" href="${cdn}/assets/zui/css/zui.min.css" />
+<link rel="stylesheet" href="${cdn}/assets/js/nice/jquery.validator.css" />
+<link rel="stylesheet" href="${cdn}/assets/css/style.css?v=${static_v}" />
+<%
+for(css_href in cssList!){%>
+<link type="text/css" rel="stylesheet" href="${cdn}/assets/css${css_href}?v=${static_v}" />
+<%}
+for(css_href in cssList2!){%>
+<link type="text/css" rel="stylesheet" href="${cdn}/assets/${css_href}?v=${static_v}" />
+<%}%>
+<!--[if lt IE 9]>
+	<script src='${cdn}/assets/js/html5shiv.min.js' type='text/javascript'></script>
+	<script src='${cdn}/assets/js/respond.min.js' type='text/javascript'></script>
+<![endif]-->
+<!--[if lt IE 10]>
+	<script src='${cdn}/assets/js/jq/placeholder.min.js' type='text/javascript'></script>
+<![endif]-->
+<script type="text/javascript" src="${cdn}/assets/js/jq/jquery-2.0.min.js?v=${static_v}"></script>
+</head>
+<body class="container">
+	<!-- header:S -->
+	<header style="margin-top: 10px;">
+		<nav class="navbar navbar-default" role="navigation">
+			<ul class="nav navbar-nav nav-justified">
+				<li class="cat-item <% if(active=='home'){%>active<%}%>"><a href="${base}/admin/index"><i class="icon-home"></i> 首页</a></li>
+				<li class="cat-item dropdown <% if(active=='music'){%>active<%}%>">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-music"></i> 音乐电台<b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="${base}/admin/music"><i class="icon-th-list"></i> 音乐列表</a></li>
+                    <li><a href="${base}/admin/radio"><i class="icon-th-list"></i> 电台列表</a></li>
+                    <li><a href="${base}/admin/music/save"><i class="icon-plus"></i> 添加音乐</a></li>
+		                    <li><a href="${base}/admin/radio/save"><i class="icon-plus"></i> 添加电台</a></li>
+                  </ul>
+                </li>
+				<%if(1 == login_user.is_admin!){%>
+						<li class="cat-item dropdown <% if(active=='user'){%>active<%}%>">
+		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> 用户管理<b class="caret"></b></a>
+		                  <ul class="dropdown-menu" role="menu">
+		                    <li><a href="${base}/admin/users"><i class="icon-th-list"></i> 用户列表</a></li>
+		                    <li><a href="${base}/admin/users/save"><i class="icon-plus"></i> 添加用户</a></li>
+		                  </ul>
+		                </li>
+						<li class="cat-item dropdown <% if(active=='special'){%>active<%}%>">
+		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-film"></i> 专辑管理<b class="caret"></b></a>
+		                  <ul class="dropdown-menu" role="menu">
+		                    <li><a href="${base}/admin/special"><i class="icon-th-list"></i> 专辑列表</a></li>
+		                    <li><a href="${base}/admin/special/save"><i class="icon-plus"></i> 添加专辑</a></li>
+		                  </ul>
+		                </li>
+						<li class="cat-item <% if(active=='mcat'){%>active<%}%>"><a href="${base}/admin/mcat"><i class="icon-tags"></i> 分类管理</a></li>
+						<li class="cat-item dropdown <% if(active=='pic'){%>active<%}%>">
+		                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-picture"></i> 图片管理<b class="caret"></b></a>
+		                  <ul class="dropdown-menu" role="menu">
+		                    <li><a href="${base}/admin/pic"><i class="icon-th-list"></i> 图库</a></li>
+		                    <li><a href="${base}/admin/pic/save"><i class="icon-plus"></i> 发布新图册</a></li>
+		                    <li><a href="${base}/admin/focus"><i class="icon-th-list"></i> 幻灯片列表</a></li>
+		                    <li><a href="${base}/admin/focus/save"><i class="icon-plus"></i> 添加幻灯片</a></li>
+		                  </ul>
+		                </li>
+						<li class="cat-item <% if(active=='setting'){%>active<%}%>"><a href="${base}/admin/sys/setting"><i class="icon-cog"></i> 系统设置</a></li>
+				<%} %>
+				<li class="cat-item dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">${login_user.nickname!}<b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="${base}/admin/logout">退出</a></li>
+                    <li class="divider"></li>
+                    <li><a href="${base}/music" target="_blank">前台音乐</a></li>
+                    <li><a href="${base}/special" target="_blank">电台专辑</a></li>
+                    <li><a href="${base}/pictures" target="_blank">图册预览</a></li>
+                  </ul>
+                </li>
+			</ul>
+		</nav>
+	</header>
+	<!-- header:E -->

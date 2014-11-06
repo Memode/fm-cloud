@@ -1,0 +1,71 @@
+<% include("/common/admin_header.html", {active : 'special'}){} %>
+<div>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>标题</th>
+				<th width="300">描述</th>
+				<th>人气</th>
+				<th>专辑封面</th>
+				<th>是否精选</th>
+				<th>创建时间</th>
+				<th>最后更新时间</th>
+				<th>状态</th>
+				<th>上传人</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for(special in specialPage.results!){%>
+			<tr>
+				<td>${special.id!}</td>
+				<td><a href="${base}/admin/special/${special.id!}">${special.title!}</a></td>
+				<td>${special.introduce!}</td>
+				<td>${special.hit!}</td>
+				<td>
+					<a href="${special.cover_url!}" target="_blank"><img src="${special.cover_url!}" width="80" height="80" /></a>
+				</td>
+				<td>
+					<%
+						if(1==special.is_fine!){%>
+							<span class="label label-badge label-danger">精选</span>
+						<%} else{%>
+							<span class="label label-badge">普通</span>
+					<%} %>
+				</td>
+				<td>${special.create_time_zh!}</td>
+				<td>${special.last_time_zh!}</td>
+				<td><%
+						if(1==special.status!){%>
+							正常
+						<%} else{%>
+							禁用
+					<%} %>
+				</td>
+				<td>${special.nickname!'超级管理员'}</td>
+				<td>
+					<a href="${base}/admin/special/${special.id!}" title="编辑">
+						<i class="icon-edit"></i>
+					</a>&nbsp;&nbsp;
+					<%
+					if(1 == special.status!){%>
+						<a href="javascript:void(0);" title="停用" onclick="$unique.admin.special.enable(${special.id!}, 0)">
+							<i class="icon-ban-circle"></i>
+						</a>
+					
+					<%} else{%>
+						<a href="javascript:void(0);" title="启用" onclick="$unique.admin.special.enable(${special.id!}, 1)">
+							<i class="icon-ok-circle"></i>
+						</a>
+					<%} %>
+					
+				</td>
+			</tr>
+			<% }%>
+		</tbody>
+	</table>
+	<% page(specialPage, './special'); %>
+</div>
+<script type="text/javascript" src="${cdn}/assets/uploadify/jquery.uploadify.min.js"></script>
+<% include("/common/admin_footer.html", {jsList : ['admin/special.js']}){} %>

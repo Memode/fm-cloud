@@ -1,0 +1,114 @@
+<% include("/common/header.html",
+{active:'special',title:'百味电台-舒缓你现在的心情!', cssList : ['/bootstrap.css', '/flexslider.css', '/special.css']}){} %>
+<div class="sec bnspic">
+	<!-- slider-->
+	<div class="flexslider">
+		<ul class="slides">
+			<%for(focus in focusList!){ if(focusLP.index % 2 == 0){%>
+			<li>
+				<img src="${focus.pic_url!}" alt="${focus.title!}" width="920" height="360" />
+				<div class="slide_content_right">
+					<h2>${focus.title!}</h2>
+				</div>
+				<div class="slide_desc_right">${focus.introduce!}</div>
+			</li> 
+			<%} else{%>
+			<li>
+				<img src="${focus.pic_url!}" alt="${focus.title!}" width="920" height="360" />
+				<div class="slide_content_left">
+					<h2>${focus.title!}</h2>
+				</div>
+				<div class="slide_desc_left">${focus.introduce!}</div>
+			</li> 
+			<%} }%>
+		</ul>
+	</div>
+</div>
+
+<div id="radio-main">
+	<!-- 精选:S -->
+	<div class="list">
+		<header>
+			<div class="pull-right">
+				<div class="btn-group" data-toggle="buttons-radio">
+					<button type="button" class="btn btn-default active">
+						<i class="icon-th-list"></i>
+					</button>
+					<button type="button" class="btn btn-default">
+						<i class="icon-th"></i>
+					</button>
+					<button type="button" class="btn btn-default">
+						<i class="icon-th-large"></i>
+					</button>
+				</div>
+			</div>
+			<h3>
+				<i class="icon-list-ul icon-border-circle"></i> 精选推荐 &nbsp;<small>${finePage.totalCount!0}个专辑</small>
+			</h3>
+		</header>
+		<section class="cards">
+			<%for(special in finePage.results!){%>
+					<div class="col-md-4 col-sm-6 col-lg-3">
+						<div class="card">
+							<div class="media-wrapper">
+								<a href="${base}/special/${special.id!}"><img src="${special.cover_url!}" alt="${special.title!}"></a>
+							</div>
+							<div class="card-heading">
+								<span class="pull-right">
+									<a href=""><i class="icon-heart-empty"></i></a>
+								</span> 
+								<a href="${base}/special/${special.id!}"><strong>${special.title!}</strong></a>
+							</div>
+						</div>
+					</div>
+				<%}
+			%>
+		</section>
+	</div>
+	<!-- 精选:E -->
+	
+	<!-- 热门:S -->
+	<div class="list">
+		<header>
+			<div class="pull-right">
+				<div class="btn-group" data-toggle="buttons-radio">
+					<button type="button" class="btn btn-default active">
+						<i class="icon-th-list"></i>
+					</button>
+					<button type="button" class="btn btn-default">
+						<i class="icon-th"></i>
+					</button>
+					<button type="button" class="btn btn-default">
+						<i class="icon-th-large"></i>
+					</button>
+				</div>
+			</div>
+			<h3>
+				<i class="icon-list-ul icon-border-circle"></i> 热门电台 &nbsp;<small>${hotPage.totalCount!0}个专辑</small>
+			</h3>
+		</header>
+		<section class="cards">
+			<%for(special in hotPage.results!){%>
+					<div class="col-md-4 col-sm-6 col-lg-3">
+						<div class="card">
+							<div class="media-wrapper">
+								<a href="${base}/special/${special.id!}"><img src="${special.cover_url!}" alt="${special.title!}"></a>
+							</div>
+							<div class="card-heading">
+								<span class="pull-right">
+									<a href=""><i class="icon-heart-empty"></i></a>
+								</span> 
+								<a href="${base}/special/${special.id!}"><strong>${special.title!}</strong></a>
+							</div>
+						</div>
+					</div>
+				<%}
+			%>
+		</section>
+	</div>
+	<!-- 热门:E -->
+</div>
+<script type="text/javascript"
+	src="${cdn}/assets/js/jq/jquery.flexslider-min.js"></script>
+<script src='${cdn}/assets/js/jq/lyz.delayLoading.min.js'></script>
+<% include("/common/footer.html", {jsList:['front/special.js']}){} %>

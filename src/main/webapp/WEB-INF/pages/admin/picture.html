@@ -1,0 +1,42 @@
+<% include("/common/admin_header.html", {active : 'pic'}){} %>
+<!-- 精选:S -->
+<div class="list">
+	<header>
+		<div class="pull-right">
+			<div class="btn-group" data-toggle="buttons-radio">
+				<button type="button" class="btn btn-default active">
+					<i class="icon-th-list"></i>
+				</button>
+				<button type="button" class="btn btn-default">
+					<i class="icon-th"></i>
+				</button>
+				<button type="button" class="btn btn-default">
+					<i class="icon-th-large"></i>
+				</button>
+			</div>
+		</div>
+		<h3>
+			<i class="icon-list-ul icon-border-circle"></i> 精选推荐 &nbsp;<small>${picPage.totalCount!0}个专辑</small>
+		</h3>
+	</header>
+	<section class="cards">
+		<%for(pic in picPage.results!){%>
+				<div class="col-md-4 col-sm-6 col-lg-3">
+					<div class="card">
+						<div class="media-wrapper">
+							<a href="${base}/admin/pic/${pic.id!}"><img src="${pic.cover_url!}" alt="${pic.title!}" width="200" height="200"></a>
+						</div>
+						<div class="card-heading">
+							<span class="pull-right">
+								2013年02月08日
+							</span> 
+							<a href="${base}/admin/pic/${pic.id!}"><strong>${pic.title!}</strong></a>
+						</div>
+					</div>
+				</div>
+			<%}
+		%>
+	</section>
+</div>
+<!-- 精选:E -->
+<% include("/common/admin_footer.html",{jsList:['admin/music.js']}){} %>
